@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HuffmanTree
+namespace HuffmanTreeInts
 {
     public class Tree
     {
@@ -15,21 +15,21 @@ namespace HuffmanTree
             _root = root;
         }
 
-        public Dictionary<byte, string> GetDictionary()
+        public Dictionary<int, string> GetDictionary()
         {
             if (_root.GetType() == typeof(Leaf))
             {
-                var leafDict = new Dictionary<byte, string>();
+                var leafDict = new Dictionary<int, string>();
                 leafDict.Add(((Leaf)_root).Value, "0");
                 return leafDict;
             }
 
-            var dict = new Dictionary<byte, string>();
+            var dict = new Dictionary<int, string>();
             RecursiveDepthSearch(_root, dict, "");
 
             return dict;
 
-            void RecursiveDepthSearch(Node node, Dictionary<byte, string> dict, string path)
+            void RecursiveDepthSearch(Node node, Dictionary<int, string> dict, string path)
             {
                 if (node.GetType() == typeof(Leaf)) dict.Add(((Leaf)node).Value, path);
                 else
@@ -42,17 +42,17 @@ namespace HuffmanTree
             }
         }
 
-        public static Tree GetTreeFromArray(IReadOnlyList<byte> bytes)
+        public static Tree GetTreeFromArray(IReadOnlyList<int> bytes)
         {
             int[] counts = new int[256];
 
-            foreach (byte b in bytes) counts[b]++;
+            foreach (int b in bytes) counts[b]++;
 
             List<Node> nodes = new List<Node>();
             for (int value = 0; value < 256; value++)
             {
                 if (counts[value] == 0) continue;
-                nodes.Add(new Leaf(counts[value], (byte)value));
+                nodes.Add(new Leaf(counts[value], value));
             }
 
             while (nodes.Count > 1)

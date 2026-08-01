@@ -8,7 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HuffmanTree\HuffmanTree.csproj" />
+    <ProjectReference Include="..\HuffmanTreeBytes\HuffmanTreeBytes.csproj" />
+    <ProjectReference Include="..\HuffmanTreeInts\HuffmanTreeInts.csproj" />
   </ItemGroup>
 
 </Project>
